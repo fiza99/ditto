@@ -1,4 +1,4 @@
-name: SonarQube Analysis
+name: SonarCloud Analysis
 
 on:
   push:
@@ -9,8 +9,8 @@ on:
       - main
 
 jobs:
-  sonarqube:
-    name: SonarQube Scan
+  sonarcloud:
+    name: SonarCloud Scan
     runs-on: ubuntu-latest
 
     steps:
@@ -23,11 +23,13 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Run SonarQube Scanner
+      - name: Run SonarCloud Scanner
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           ./gradlew sonarqube \
-            -Dsonar.projectKey=my-java-project \
-            -Dsonar.host.url=http://YOUR-SONARQUBE-SERVER \
+            -Dsonar.projectKey=fiza99_ditto \
+            -Dsonar.organization=fiza99 \
+            -Dsonar.host.url=https://sonarcloud.io \
             -Dsonar.login=$SONAR_TOKEN
+
